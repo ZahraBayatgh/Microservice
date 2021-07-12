@@ -1,0 +1,15 @@
+version: '3.4'
+
+services:
+  service1.api:
+    image: ${DOCKER_REGISTRY-}service1api
+    build:
+      context: .
+      dockerfile: src/Services/Service1.API/Dockerfile
+
+  service2.api:
+    image: ${DOCKER_REGISTRY-}service2api
+    build:
+      context: .
+      dockerfile: src/Services/Service2.API/Dockerfile
+
