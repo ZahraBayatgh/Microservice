@@ -1,6 +1,5 @@
 ﻿using Microsoft.AspNetCore.Mvc;
-using Newtonsoft.Json;
-using System.Net.Http;
+using Service1.API.Services;
 using System.Threading.Tasks;
 
 namespace Service1.API.Controllers
@@ -9,20 +8,17 @@ namespace Service1.API.Controllers
     [Route("[controller]")]
     public class WeatherForecastController : ControllerBase
     {
-        private readonly HttpClient _httpClient;
+        private readonly IRemoteService remoteService;
 
-        public WeatherForecastController(IHttpClientFactory httpClient)
+        public WeatherForecastController(IRemoteService remoteService )
         {
-            _httpClient = httpClient.CreateClient("service2"); 
+            this.remoteService = remoteService;
         }
 
         [HttpGet]
         public async Task<IActionResult> Get()
         {
-            var responce = await _httpClient.GetAsync("api/Values");
-            var content = await responce.Content.ReadAsStringAsync();
-
-           var values = JsonConvert.DeserializeObject<string[]>(content);
+           var values = await remoteService.GetValuesAsync();
 
             return Ok(values);
         }

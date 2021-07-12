@@ -6,6 +6,7 @@ using Microsoft.Extensions.Hosting;
 using Microsoft.OpenApi.Models;
 using Polly;
 using Polly.Extensions.Http;
+using Service1.API.Services;
 using System;
 using System.Net.Http;
 
@@ -23,12 +24,12 @@ namespace Service1.API
         // This method gets called by the runtime. Use this method to add services to the container.
         public void ConfigureServices(IServiceCollection services)
         {
-            services.AddHttpClient("service2", client =>
+            services.AddHttpClient<IRemoteService, RemoteService>(client =>
             {
                 client.BaseAddress = new Uri(Configuration["Service2Api"]);
             })
-            .AddPolicyHandler(GetRetryPolicy())
-            .AddPolicyHandler(GetCircuitBreakerPolicy());
+             .AddPolicyHandler(GetRetryPolicy())
+             .AddPolicyHandler(GetCircuitBreakerPolicy());
 
             services.AddControllers();
             services.AddSwaggerGen(c =>
