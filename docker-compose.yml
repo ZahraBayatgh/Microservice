@@ -13,3 +13,14 @@ services:
       context: .
       dockerfile: src/Services/Service2.API/Dockerfile
 
+  identitydata:
+    image: mcr.microsoft.com/mssql/server:2017-latest
+  
+  identity.api:
+    image: ${DOCKER_REGISTRY-}identityapi
+    build:
+      context: .
+      dockerfile: src/Services/dentity.API/Dockerfile
+    depends_on:
+      - identitydata
+

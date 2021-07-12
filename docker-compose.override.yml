@@ -13,3 +13,24 @@ services:
     ports:
       - "80"
 
+  identitydata:
+    container_name: identitydata
+    environment:
+      - SA_PASSWORD=Pass@word
+      - ACCEPT_EULA=Y
+    ports:
+      - "5435:1433"
+    volumes:
+      - template-identitydata:/var/opt/mssql
+
+  identity.api:
+    environment:
+      - ASPNETCORE_ENVIRONMENT=Development
+      - ConnectionStrings__AuthDb=server=identitydata;database=AuthDb;uid=sa;password=Pass@word;
+    ports:
+      - "5105:80"
+      - "443"
+
+volumes:
+  template-identitydata:
+    external: false

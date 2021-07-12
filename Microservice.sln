@@ -17,6 +17,8 @@ Project("{2150E333-8FDC-42A3-9474-1A3956D46DE8}") = "Common", "Common", "{67B97C
 EndProject
 Project("{FAE04EC0-301F-11D3-BF4B-00C04F79EFBC}") = "Authentication", "Common\Authentication\Authentication.csproj", "{79228C72-3073-42EA-9177-37C5F274F6B3}"
 EndProject
+Project("{FAE04EC0-301F-11D3-BF4B-00C04F79EFBC}") = "Identity.API", "src\Services\dentity.API\Identity.API.csproj", "{A22D6A6C-6C52-44B1-A20C-C09115BD028F}"
+EndProject
 Global
 	GlobalSection(SolutionConfigurationPlatforms) = preSolution
 		Debug|Any CPU = Debug|Any CPU
@@ -39,6 +41,10 @@ Global
 		{79228C72-3073-42EA-9177-37C5F274F6B3}.Debug|Any CPU.Build.0 = Debug|Any CPU
 		{79228C72-3073-42EA-9177-37C5F274F6B3}.Release|Any CPU.ActiveCfg = Release|Any CPU
 		{79228C72-3073-42EA-9177-37C5F274F6B3}.Release|Any CPU.Build.0 = Release|Any CPU
+		{A22D6A6C-6C52-44B1-A20C-C09115BD028F}.Debug|Any CPU.ActiveCfg = Debug|Any CPU
+		{A22D6A6C-6C52-44B1-A20C-C09115BD028F}.Debug|Any CPU.Build.0 = Debug|Any CPU
+		{A22D6A6C-6C52-44B1-A20C-C09115BD028F}.Release|Any CPU.ActiveCfg = Release|Any CPU
+		{A22D6A6C-6C52-44B1-A20C-C09115BD028F}.Release|Any CPU.Build.0 = Release|Any CPU
 	EndGlobalSection
 	GlobalSection(SolutionProperties) = preSolution
 		HideSolutionNode = FALSE
@@ -49,6 +55,7 @@ Global
 		{EA4BB5BF-01FB-4708-9BCB-9E1B77FC1764} = {04F000F0-3BB2-4AB6-9065-D4C9CC7C9C6A}
 		{67B97CCC-C023-4D85-8CFB-A016A19AAC15} = {97F65446-88FC-4ED4-8E85-1BE78E8328A2}
 		{79228C72-3073-42EA-9177-37C5F274F6B3} = {67B97CCC-C023-4D85-8CFB-A016A19AAC15}
+		{A22D6A6C-6C52-44B1-A20C-C09115BD028F} = {04F000F0-3BB2-4AB6-9065-D4C9CC7C9C6A}
 	EndGlobalSection
 	GlobalSection(ExtensibilityGlobals) = postSolution
 		SolutionGuid = {CA0A0330-0FAB-4945-AA60-6E2E4F0892F5}
