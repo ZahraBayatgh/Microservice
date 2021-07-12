@@ -52,7 +52,7 @@ namespace dentity.API
               });
             services.AddSwaggerGen(c =>
             {
-                c.SwaggerDoc("v1", new OpenApiInfo { Title = "Service1.API", Version = "v1" });
+                c.SwaggerDoc("v1", new OpenApiInfo { Title = "Identity.API", Version = "v1" });
             });
 
             services.AddApiVersioning(cfg =>

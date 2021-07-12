@@ -4,8 +4,10 @@ services:
   service1.api:
     environment:
       - ASPNETCORE_ENVIRONMENT=Development
+      - Service2Api=http://service2.api/
+      - TokenOptions__Issuer=http://identity.api/
     ports:
-      - "80"
+      - "1518:80"
 
   service2.api:
     environment:
@@ -18,6 +20,8 @@ services:
     environment:
       - SA_PASSWORD=Pass@word
       - ACCEPT_EULA=Y
+      
+      
     ports:
       - "5435:1433"
     volumes:
@@ -27,9 +31,10 @@ services:
     environment:
       - ASPNETCORE_ENVIRONMENT=Development
       - ConnectionStrings__AuthDb=server=identitydata;database=AuthDb;uid=sa;password=Pass@word;
+      - TokenOptions__Issuer=http://identity.api/
     ports:
       - "5105:80"
-      - "443"
+      - "5106:443"
 
 volumes:
   template-identitydata:

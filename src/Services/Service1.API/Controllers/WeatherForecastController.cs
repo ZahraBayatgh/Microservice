@@ -1,4 +1,5 @@
-﻿using Microsoft.AspNetCore.Mvc;
+﻿using Microsoft.AspNetCore.Authorization;
+using Microsoft.AspNetCore.Mvc;
 using Service1.API.Services;
 using System.Threading.Tasks;
 
@@ -16,6 +17,7 @@ namespace Service1.API.Controllers
         }
 
         [HttpGet]
+        [Authorize]
         public async Task<IActionResult> Get()
         {
            var values = await remoteService.GetValuesAsync();
