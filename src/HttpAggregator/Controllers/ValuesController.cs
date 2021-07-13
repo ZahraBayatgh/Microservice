@@ -15,12 +15,12 @@ namespace HttpAggregator.Controllers
     public class ValuesController : ControllerBase
     {
         private readonly IService2 _service2;
-    //    private readonly ILogger<ValuesController> _logger;
+        private readonly ILogger<ValuesController> _logger;
 
-        public ValuesController(IService2 service2/*, ILogger<ValuesController> logger*/)
+        public ValuesController(IService2 service2, ILogger<ValuesController> logger)
         {
             _service2 = service2;
-          //  _logger = logger;
+            _logger = logger;
         }
 
         // GET: api/<ValuesController>
@@ -28,7 +28,7 @@ namespace HttpAggregator.Controllers
         [Authorize]
         public async Task<IEnumerable<string>> GetAsync()
         {
-         //   _logger.LogInformation("GET values is invoking!");
+            _logger.LogInformation("GET values is invoking!");
 
             var result = await _service2.GetValuesAsync();
 
