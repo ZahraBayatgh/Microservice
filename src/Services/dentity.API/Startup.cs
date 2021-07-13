@@ -1,9 +1,11 @@
 using Authentication.Identity;
 using Authentication.Tokens;
 using dentity.API.Data;
+using HealthChecks.UI.Client;
 using Identity.API.Extentions;
 using Identity.API.Services;
 using Microsoft.AspNetCore.Builder;
+using Microsoft.AspNetCore.Diagnostics.HealthChecks;
 using Microsoft.AspNetCore.Hosting;
 using Microsoft.AspNetCore.Mvc;
 using Microsoft.AspNetCore.Mvc.Versioning;
@@ -62,6 +64,7 @@ namespace dentity.API
                 cfg.AssumeDefaultVersionWhenUnspecified = true;
                 cfg.ApiVersionReader = new HeaderApiVersionReader("X-Version");
             });
+            services.AddHealthChecks(Configuration);
         }
 
         // This method gets called by the runtime. Use this method to configure the HTTP request pipeline.
@@ -83,6 +86,15 @@ namespace dentity.API
             app.UseEndpoints(endpoints =>
             {
                 endpoints.MapControllers();
+                endpoints.MapHealthChecks("/hc", new HealthCheckOptions()
+                {
+                    Predicate = _ => true,
+                    ResponseWriter = UIResponseWriter.WriteHealthCheckUIResponse
+                });
+                endpoints.MapHealthChecks("/liveness", new HealthCheckOptions
+                {
+                    Predicate = r => r.Name.Contains("self")
+                });
             });
         }
     }

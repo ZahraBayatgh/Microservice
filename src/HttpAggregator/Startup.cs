@@ -1,7 +1,9 @@
 using Authentication.Tokens;
+using HealthChecks.UI.Client;
 using HttpAggregator.Extensions;
 using HttpAggregator.Options;
 using Microsoft.AspNetCore.Builder;
+using Microsoft.AspNetCore.Diagnostics.HealthChecks;
 using Microsoft.AspNetCore.Hosting;
 using Microsoft.AspNetCore.HttpsPolicy;
 using Microsoft.AspNetCore.Mvc;
@@ -12,6 +14,7 @@ using Microsoft.Extensions.Logging;
 using Microsoft.OpenApi.Models;
 using Ocelot.DependencyInjection;
 using Ocelot.Middleware;
+using Service1.API.Extentions;
 using System;
 using System.Collections.Generic;
 using System.Linq;
@@ -41,6 +44,8 @@ namespace HttpAggregator
             {
                 c.SwaggerDoc("v1", new OpenApiInfo { Title = "HttpAggregator", Version = "v1" });
             });
+            services.AddHealthChecks(Configuration);
+
         }
 
         // This method gets called by the runtime. Use this method to configure the HTTP request pipeline.
@@ -61,6 +66,15 @@ namespace HttpAggregator
             app.UseEndpoints(endpoints =>
             {
                 endpoints.MapControllers();
+                endpoints.MapHealthChecks("/hc", new HealthCheckOptions()
+                {
+                    Predicate = _ => true,
+                    ResponseWriter = UIResponseWriter.WriteHealthCheckUIResponse
+                });
+                endpoints.MapHealthChecks("/liveness", new HealthCheckOptions
+                {
+                    Predicate = r => r.Name.Contains("self")
+                });
             });
             await app.UseOcelot();
 

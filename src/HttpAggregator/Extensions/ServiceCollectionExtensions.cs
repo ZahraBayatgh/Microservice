@@ -3,6 +3,7 @@ using HttpAggregator.Services;
 using Microsoft.AspNetCore.Http;
 using Microsoft.Extensions.Configuration;
 using Microsoft.Extensions.DependencyInjection;
+using Service1.API.Extentions;
 using System;
 
 namespace HttpAggregator.Extensions
@@ -26,9 +27,9 @@ namespace HttpAggregator.Extensions
                 client.BaseAddress = new Uri(configuration["Service2Api:BaseAddress"]);
             })
                 .AddHttpMessageHandler<HttpClientAuthorizationDelegatingHandler>()
-              //  .SetHandlerLifetime(TimeSpan.FromMinutes(5))
-                .AddPolicyHandler(PolicyExtend.GetRetryPolicy())
-                .AddPolicyHandler(PolicyExtend.GetCircuitBreakerPolicy());
+                .SetHandlerLifetime(TimeSpan.FromMinutes(5))
+                .AddPolicyHandler(ServiceExtentions.GetRetryPolicy())
+                .AddPolicyHandler(ServiceExtentions.GetCircuitBreakerPolicy());
 
             return services;
         }

@@ -1,14 +1,18 @@
 using Authentication;
 using Authentication.Tokens;
+using HealthChecks.UI.Client;
 using Microsoft.AspNetCore.Builder;
+using Microsoft.AspNetCore.Diagnostics.HealthChecks;
 using Microsoft.AspNetCore.Hosting;
 using Microsoft.AspNetCore.Http;
 using Microsoft.Extensions.Configuration;
 using Microsoft.Extensions.DependencyInjection;
+using Microsoft.Extensions.Diagnostics.HealthChecks;
 using Microsoft.Extensions.Hosting;
 using Microsoft.Extensions.Logging;
 using Microsoft.OpenApi.Models;
 using Polly;
+using Service1.API.Extentions;
 using Service1.API.Services;
 using System;
 
@@ -35,8 +39,8 @@ namespace Service1.API
                 client.BaseAddress = new Uri(Configuration["Service2Api"]);
             })
               .AddHttpMessageHandler<HttpClientAuthorizationDelegatingHandler>()
-             .AddPolicyHandler(PolicyExtend.GetRetryPolicy())
-             .AddPolicyHandler(PolicyExtend.GetCircuitBreakerPolicy());
+             .AddPolicyHandler(ServiceExtentions.GetRetryPolicy())
+             .AddPolicyHandler(ServiceExtentions.GetCircuitBreakerPolicy());
             services.AddCustomAuthentication();
 
             services.AddControllers();
@@ -44,6 +48,8 @@ namespace Service1.API
             {
                 c.SwaggerDoc("v1", new OpenApiInfo { Title = "Service1.API", Version = "v1" });
             });
+            services.AddHealthChecks(Configuration);
+
         }
 
         // This method gets called by the runtime. Use this method to configure the HTTP request pipeline.
@@ -70,7 +76,17 @@ namespace Service1.API
             app.UseEndpoints(endpoints =>
             {
                 endpoints.MapControllers();
+                endpoints.MapHealthChecks("/hc", new HealthCheckOptions()
+                {
+                    Predicate = _ => true,
+                    ResponseWriter = UIResponseWriter.WriteHealthCheckUIResponse
+                });
+                endpoints.MapHealthChecks("/liveness", new HealthCheckOptions
+                {
+                    Predicate = r => r.Name.Contains("self")
+                });
             });
         }
+    
     }
 }
