@@ -11,7 +11,7 @@ namespace Service1.API.Controllers
     {
         private readonly IRemoteService remoteService;
 
-        public WeatherForecastController(IRemoteService remoteService )
+        public WeatherForecastController(IRemoteService remoteService)
         {
             this.remoteService = remoteService;
         }
@@ -20,7 +20,7 @@ namespace Service1.API.Controllers
         [Authorize]
         public async Task<IActionResult> Get()
         {
-           var values = await remoteService.GetValuesAsync();
+            var values = await remoteService.GetValuesAsync();
 
             return Ok(values);
         }

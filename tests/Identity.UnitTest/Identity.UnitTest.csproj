@@ -33,7 +33,7 @@
   </ItemGroup>
 
   <ItemGroup>
-    <ProjectReference Include="..\..\Common\Authentication\Authentication.csproj" />
+    <ProjectReference Include="..\..\src\Common\Authentication\Authentication.csproj" />
     <ProjectReference Include="..\..\src\Services\dentity.API\Identity.API.csproj" />
   </ItemGroup>
 

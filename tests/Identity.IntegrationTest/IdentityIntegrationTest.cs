@@ -7,7 +7,7 @@ using Xunit;
 
 namespace Service2.IntegrationTest
 {
-    public class IdentityIntegrationTest: BaseIntegerationTest
+    public class IdentityIntegrationTest : BaseIntegerationTest
     {
 
         public IdentityIntegrationTest(IdentityFixture<Startup> testFixture)
@@ -22,7 +22,7 @@ namespace Service2.IntegrationTest
             TokenRequestModel model = new TokenRequestModel { Username = "bytzahra@gmail.com", Password = "P@ssw0rd!" };
 
             var httpResponse = await PostRequest($"auth/Connect", model);
-            Assert.Equal((int)HttpStatusCode.Created,(int) httpResponse.StatusCode);
+            Assert.Equal((int)HttpStatusCode.Created, (int)httpResponse.StatusCode);
         }
     }
 }

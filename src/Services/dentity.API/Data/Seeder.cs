@@ -86,7 +86,7 @@ namespace dentity.API.Data
                     }
                 }
 
-            
+
             };
             Console.WriteLine("Database seeded...");
         }

@@ -22,7 +22,7 @@ namespace Service2.API.Controllers
         [Authorize]
         public IEnumerable<string> Get()
         {
-            DateTime cacheMessageTime=DateTime.Now;
+            DateTime cacheMessageTime = DateTime.Now;
             return ValueService.GetValues(cacheMessageTime.ToString());
         }
 

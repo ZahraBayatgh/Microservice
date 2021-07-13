@@ -24,7 +24,7 @@ namespace Identity.UnitTest
             _logger = new Mock<ILogger<TokenService>>();
             _tokenFactory = new TokenFactoryConfig().MockTokenFactory();
             _userManager = new UserManagerTestConfig().MockUserManager();
-            _tokenService = new TokenService(_logger.Object, _tokenFactory,_userManager.Object );
+            _tokenService = new TokenService(_logger.Object, _tokenFactory, _userManager.Object);
         }
 
         [Fact]
@@ -44,7 +44,7 @@ namespace Identity.UnitTest
             var result = await Assert.ThrowsAsync<NullReferenceException>((() =>
                         _tokenService.GetToken(tokenRequestViewModel)));
         }
-      
+
     }
 
 }

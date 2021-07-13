@@ -20,7 +20,7 @@ namespace Service2.UnitTest
 
             // Act
             var result = valueService.GetValues(messageTime);
-            var expected = new string[] { "value1", "value2" , messageTime };
+            var expected = new string[] { "value1", "value2", messageTime };
 
             // Assert
             Assert.Equal(expected, result);
