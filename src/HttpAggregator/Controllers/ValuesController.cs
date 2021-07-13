@@ -11,6 +11,8 @@ namespace HttpAggregator.Controllers
 {
     [Route("api/[controller]")]
     [ApiController]
+    [ApiVersion("1.0")]
+    [ApiVersion("1.1")]
 
     public class ValuesController : ControllerBase
     {
@@ -37,9 +39,10 @@ namespace HttpAggregator.Controllers
 
         // GET api/<ValuesController>/5
         [HttpGet("{id}")]
-        public string Get(int id)
+        [ApiVersion("1.1")]
+        public string Get1(int id)
         {
-            return "value";
+            return "value1";
         }
 
     }
