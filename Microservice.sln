@@ -7,17 +7,21 @@ Project("{2150E333-8FDC-42A3-9474-1A3956D46DE8}") = "src", "src", "{97F65446-88F
 EndProject
 Project("{2150E333-8FDC-42A3-9474-1A3956D46DE8}") = "Services", "Services", "{04F000F0-3BB2-4AB6-9065-D4C9CC7C9C6A}"
 EndProject
-Project("{FAE04EC0-301F-11D3-BF4B-00C04F79EFBC}") = "Service1.API", "src\Services\Service1.API\Service1.API.csproj", "{F0388BB7-B786-48F1-9547-41BCFEBC190F}"
+Project("{9A19103F-16F7-4668-BE54-9A1E7A4F7556}") = "Service1.API", "src\Services\Service1.API\Service1.API.csproj", "{F0388BB7-B786-48F1-9547-41BCFEBC190F}"
 EndProject
-Project("{FAE04EC0-301F-11D3-BF4B-00C04F79EFBC}") = "Service2.API", "src\Services\Service2.API\Service2.API.csproj", "{EA4BB5BF-01FB-4708-9BCB-9E1B77FC1764}"
+Project("{9A19103F-16F7-4668-BE54-9A1E7A4F7556}") = "Service2.API", "src\Services\Service2.API\Service2.API.csproj", "{EA4BB5BF-01FB-4708-9BCB-9E1B77FC1764}"
 EndProject
 Project("{E53339B2-1760-4266-BCC7-CA923CBCF16C}") = "docker-compose", "docker-compose.dcproj", "{676D021B-4FF7-4205-BCEF-8BF57D6AFF34}"
 EndProject
 Project("{2150E333-8FDC-42A3-9474-1A3956D46DE8}") = "Common", "Common", "{67B97CCC-C023-4D85-8CFB-A016A19AAC15}"
 EndProject
-Project("{FAE04EC0-301F-11D3-BF4B-00C04F79EFBC}") = "Authentication", "Common\Authentication\Authentication.csproj", "{79228C72-3073-42EA-9177-37C5F274F6B3}"
+Project("{9A19103F-16F7-4668-BE54-9A1E7A4F7556}") = "Authentication", "Common\Authentication\Authentication.csproj", "{79228C72-3073-42EA-9177-37C5F274F6B3}"
 EndProject
-Project("{FAE04EC0-301F-11D3-BF4B-00C04F79EFBC}") = "Identity.API", "src\Services\dentity.API\Identity.API.csproj", "{A22D6A6C-6C52-44B1-A20C-C09115BD028F}"
+Project("{9A19103F-16F7-4668-BE54-9A1E7A4F7556}") = "Identity.API", "src\Services\dentity.API\Identity.API.csproj", "{A22D6A6C-6C52-44B1-A20C-C09115BD028F}"
+EndProject
+Project("{2150E333-8FDC-42A3-9474-1A3956D46DE8}") = "ApiGateways", "ApiGateways", "{A444D8DD-69B7-4FB4-BB26-9EF97AD82C1A}"
+EndProject
+Project("{FAE04EC0-301F-11D3-BF4B-00C04F79EFBC}") = "HttpAggregator", "src\HttpAggregator\HttpAggregator.csproj", "{01EAC020-3C32-416F-870C-7DB1A2BDDC4F}"
 EndProject
 Global
 	GlobalSection(SolutionConfigurationPlatforms) = preSolution
@@ -45,6 +49,10 @@ Global
 		{A22D6A6C-6C52-44B1-A20C-C09115BD028F}.Debug|Any CPU.Build.0 = Debug|Any CPU
 		{A22D6A6C-6C52-44B1-A20C-C09115BD028F}.Release|Any CPU.ActiveCfg = Release|Any CPU
 		{A22D6A6C-6C52-44B1-A20C-C09115BD028F}.Release|Any CPU.Build.0 = Release|Any CPU
+		{01EAC020-3C32-416F-870C-7DB1A2BDDC4F}.Debug|Any CPU.ActiveCfg = Debug|Any CPU
+		{01EAC020-3C32-416F-870C-7DB1A2BDDC4F}.Debug|Any CPU.Build.0 = Debug|Any CPU
+		{01EAC020-3C32-416F-870C-7DB1A2BDDC4F}.Release|Any CPU.ActiveCfg = Release|Any CPU
+		{01EAC020-3C32-416F-870C-7DB1A2BDDC4F}.Release|Any CPU.Build.0 = Release|Any CPU
 	EndGlobalSection
 	GlobalSection(SolutionProperties) = preSolution
 		HideSolutionNode = FALSE
@@ -56,6 +64,8 @@ Global
 		{67B97CCC-C023-4D85-8CFB-A016A19AAC15} = {97F65446-88FC-4ED4-8E85-1BE78E8328A2}
 		{79228C72-3073-42EA-9177-37C5F274F6B3} = {67B97CCC-C023-4D85-8CFB-A016A19AAC15}
 		{A22D6A6C-6C52-44B1-A20C-C09115BD028F} = {04F000F0-3BB2-4AB6-9065-D4C9CC7C9C6A}
+		{A444D8DD-69B7-4FB4-BB26-9EF97AD82C1A} = {97F65446-88FC-4ED4-8E85-1BE78E8328A2}
+		{01EAC020-3C32-416F-870C-7DB1A2BDDC4F} = {A444D8DD-69B7-4FB4-BB26-9EF97AD82C1A}
 	EndGlobalSection
 	GlobalSection(ExtensibilityGlobals) = postSolution
 		SolutionGuid = {CA0A0330-0FAB-4945-AA60-6E2E4F0892F5}
