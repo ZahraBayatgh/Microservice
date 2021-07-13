@@ -12,6 +12,8 @@ services:
   service2.api:
     environment:
       - ASPNETCORE_ENVIRONMENT=Development
+      - TokenOptions__Issuer=http://identity.api/
+
     ports:
       - "80"
 

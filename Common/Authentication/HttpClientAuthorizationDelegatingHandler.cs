@@ -6,7 +6,7 @@ using System.Net.Http.Headers;
 using System.Threading;
 using System.Threading.Tasks;
 
-namespace Service1.API
+namespace Authentication
 {
     public class HttpClientAuthorizationDelegatingHandler
       : DelegatingHandler

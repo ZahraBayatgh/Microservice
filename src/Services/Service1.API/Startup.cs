@@ -1,3 +1,4 @@
+using Authentication;
 using Authentication.Tokens;
 using Microsoft.AspNetCore.Builder;
 using Microsoft.AspNetCore.Hosting;
