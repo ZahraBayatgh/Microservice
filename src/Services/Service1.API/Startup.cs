@@ -8,10 +8,8 @@ using Microsoft.Extensions.DependencyInjection;
 using Microsoft.Extensions.Hosting;
 using Microsoft.OpenApi.Models;
 using Polly;
-using Polly.Extensions.Http;
 using Service1.API.Services;
 using System;
-using System.Net.Http;
 
 namespace Service1.API
 {
@@ -36,8 +34,8 @@ namespace Service1.API
                 client.BaseAddress = new Uri(Configuration["Service2Api"]);
             })
               .AddHttpMessageHandler<HttpClientAuthorizationDelegatingHandler>()
-             .AddPolicyHandler(GetRetryPolicy())
-             .AddPolicyHandler(GetCircuitBreakerPolicy());
+             .AddPolicyHandler(PolicyExtend.GetRetryPolicy())
+             .AddPolicyHandler(PolicyExtend.GetCircuitBreakerPolicy());
             services.AddCustomAuthentication();
 
             services.AddControllers();
@@ -67,20 +65,6 @@ namespace Service1.API
             {
                 endpoints.MapControllers();
             });
-        }
-
-        static IAsyncPolicy<HttpResponseMessage> GetRetryPolicy()
-        {
-            return HttpPolicyExtensions
-                .HandleTransientHttpError()
-                .OrResult(msg => msg.StatusCode == System.Net.HttpStatusCode.NotFound)
-                .WaitAndRetryAsync(6, retryAttempt => TimeSpan.FromSeconds(Math.Pow(2, retryAttempt)));
-        }
-        private static IAsyncPolicy<HttpResponseMessage> GetCircuitBreakerPolicy()
-        {
-            return HttpPolicyExtensions
-                .HandleTransientHttpError()
-                .CircuitBreakerAsync(5, TimeSpan.FromSeconds(30));
         }
     }
 }

@@ -38,6 +38,17 @@ services:
       - "5105:80"
       - "5106:443"
 
+  httpaggregator:
+    environment:
+      - ASPNETCORE_ENVIRONMENT=Development
+      - ASPNETCORE_URLS=https://+:443;http://+:80
+      - Service2Api__BaseAddress=http://service2.api/
+      - TokenOptions__Issuer=http://identity.api/
+
+    ports:
+      - "1818:80"
+    volumes:
+      - ${APPDATA}/ASP.NET/Https:/root/.aspnet/https:ro
 volumes:
   template-identitydata:
     external: false

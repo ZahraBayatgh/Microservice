@@ -24,3 +24,10 @@ services:
     depends_on:
       - identitydata
 
+
+  httpaggregator:
+    image: ${DOCKER_REGISTRY-}httpaggregator
+    build:
+      context: .
+      dockerfile: src/HttpAggregator/Dockerfile
+
