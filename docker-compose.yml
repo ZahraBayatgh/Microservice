@@ -31,3 +31,10 @@ services:
       context: .
       dockerfile: src/HttpAggregator/Dockerfile
 
+
+  webstatus:
+    image: ${DOCKER_REGISTRY-}webstatus
+    build:
+      context: .
+      dockerfile: src/Services/WebStatus/Dockerfile
+
