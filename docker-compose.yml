@@ -38,3 +38,10 @@ services:
       context: .
       dockerfile: src/Services/WebStatus/Dockerfile
 
+
+  school.api:
+    image: ${DOCKER_REGISTRY-}schoolapi
+    build:
+      context: .
+      dockerfile: src/Services/School.API/Dockerfile
+
